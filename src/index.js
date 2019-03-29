@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import './style.scss'
 
-var state = {
+let state = {
     "nodes": [
         {"id": "node1", "desc": "this is node1", "type": 0, "selected": true},
         {"id": "node2", "desc": "this is node2", "type": 1, "selected": false}
@@ -11,15 +11,15 @@ var state = {
     ]
 };
 
-var selectedNode = state.nodes[0];
-var nodeMap = {"node1": state.nodes[0]}
-var linkList = {"node1": [state.links[0]], "node2": []};
+let selectedNode = state.nodes[0];
+let nodeMap = {"node1": state.nodes[0]}
+let linkList = {"node1": [state.links[0]], "node2": []};
 
-var svg = d3.select("svg"),
+let svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
-var link = svg.append("g").attr("class", "links").selectAll("line");
-var node = svg.append("g").attr("class", "nodes").selectAll("circle");
+let link = svg.append("g").attr("class", "links").selectAll("line");
+let node = svg.append("g").attr("class", "nodes").selectAll("circle");
 
 svg.append("defs").append("marker")
     .attr("id", "straight")
@@ -43,7 +43,7 @@ svg.append("defs").append("marker")
     .append("path")
     .attr("d", "M0,-4L8,0L0,4");
 
-var zoom = d3.zoom()
+let zoom = d3.zoom()
     .scaleExtent([1/8, 2])
     .on("zoom", zoomed);
 
@@ -52,7 +52,7 @@ d3.select("button")
 
 svg.call(zoom);
 
-var current_transform = "";
+let current_transform = "";
 
 function zoomed() {
     current_transform = d3.event.transform;
@@ -66,9 +66,9 @@ function resetted() {
       .call(zoom.transform, d3.zoomIdentity);
 }
 
-var color = d3.scaleOrdinal(d3.schemeCategory10);
+let color = d3.scaleOrdinal(d3.schemeCategory10);
 
-var simulation = d3.forceSimulation()
+let simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody().strength(-250))
     .force("link", d3.forceLink().distance(100).id(function(d) { 
         return d.id;
@@ -141,20 +141,20 @@ function ticked() {
 }
 
 function getPath(d) {
-    var r = 30;
+    let r = 30;
     if (d.target.selected)
         r = 40;
-    var dx = d.target.x - d.source.x,
+    let dx = d.target.x - d.source.x,
         dy = d.target.y - d.source.y,
         dr = Math.sqrt(dx * dx + dy * dy),
         pathLength = Math.sqrt((dx * dx) + (dy * dy)),
         offsetX = (dx * r) / pathLength,
         offsetY = (dy * r) / pathLength;
     if (d.curved) {
-        var sinx = r / 2 / dr, cosx = Math.sqrt(1 - sinx*sinx);
-        var diffX = dx * cosx + dy * sinx,
+        let sinx = r / 2 / dr, cosx = Math.sqrt(1 - sinx*sinx);
+        let diffX = dx * cosx + dy * sinx,
             diffY = dy * cosx - dx * sinx;
-        var tx = d.source.x + diffX - offsetX,
+        let tx = d.source.x + diffX - offsetX,
             ty = d.source.y + diffY - offsetY;
         return "M" + d.source.x + "," + d.source.y + 
             "A" + dr + "," + dr + " 0 0,1 " + tx + "," + ty;
@@ -166,7 +166,7 @@ function getPath(d) {
 }
 
 function addNode(id, desc, type, x, y) {
-    var node = {"id": id, "desc": desc, "type": type, "selected": true};
+    let node = {"id": id, "desc": desc, "type": type, "selected": true};
     if (x && y) {
         node.x = x; node.y = y;
     }
@@ -181,8 +181,6 @@ function addNode(id, desc, type, x, y) {
 }
 
 function addLink(source, target, width) {
-    let sNode = nodeMap[source];
-    let tNode = nodeMap[target];
     let ind = -1;
     let targetList = linkList[target];
     if (targetList) {
