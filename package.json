@@ -1,0 +1,31 @@
+{
+  "name": "bubble",
+  "version": "0.0.1",
+  "description": "A simple project demonstrating modern front-end facilities.",
+  "repository": "https://github.com/yxonic/bubble/",
+  "author": "Yu Yin <yxonic@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-typescript": "^7.3.3",
+    "babel-loader": "^8.0.5",
+    "typescript": "^3.3.4000",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "scripts": {
+    "bundle": "webpack",
+    "dev": "webpack-dev-server",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "@types/d3": "^5.7.1",
+    "d3": "^5.9.2"
+  }
+}
