@@ -1,0 +1,36 @@
+.links path {
+    fill: none;
+    stroke: #999;
+    stroke-opacity: 0.6;
+  }
+  
+  marker {
+    fill: #999;
+    opacity: 0.6;
+  }
+  
+  .nodes circle {
+    stroke: #fff;
+    stroke-width: 3px;
+    r: 15px;
+  }
+  
+  .nodes circle.selected {
+    stroke: #fff;
+    stroke-width: 3px;
+    r: 25px;
+  }
+  
+  .nodes circle:hover {
+    r: 18;
+  }
+  
+  .nodes circle.selected:hover {
+    r: 27;
+  }
+  
+  button.reset {
+    position: absolute;
+    top: 25px;
+    left: 100px;
+  }
